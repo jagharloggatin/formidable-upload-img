@@ -16,6 +16,8 @@ const applicationDir = path.resolve('./');
 const app = express();
 
 //To get past cors policy
+//https://www.npmjs.com/package/cors
+//https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 app.use(cors({
     origin: '*'
 }));
