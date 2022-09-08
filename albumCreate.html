@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    </head>
+    <body>
+
+        <h2>A L B U M    C R E A T E</h2>
+        <form id='formAddServerDictory' action="/api/upload" enctype="multipart/form-data" method="post">
+            <div>Text field title: <input type="text" name="title" /></div>
+            <div>File: <input type="file" name="image" multiple="multiple" /></div>
+            <input id='submitButton' type="submit" value="Upload" />
+        </form>
+    </body>
+
+    <script src="submit.js"></script>
+</html>
