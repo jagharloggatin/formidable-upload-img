@@ -32,9 +32,11 @@ app.post('/api/upload', (req, res) => {
         //Files old path when uploaded with formidable
         let oldPath = files.image.filepath;
 
-        // let newPath = path.resolve('appdata/library/pictures/' + files.image.originalFilename);
         //Puts the file in the new path
-        let newPath = 'C:\\Users\\Jonathan\\WebstormProjects\\formidable\\app-data\\library\\pictures\\albumheaderimage\\' + files.image.originalFilename;
+        let newPath = path.resolve('appdata/library/pictures/' + files.image.originalFilename);
+
+        //This is what path.resolve fixes, you don't have to write the full dirname
+        // let newPath = 'C:\\Users\\Jonathan\\WebstormProjects\\formidable\\app-data\\library\\pictures\\albumheaderimage\\' + files.image.originalFilename;
 
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
