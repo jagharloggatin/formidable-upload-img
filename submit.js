@@ -1,5 +1,4 @@
 const formAddServerDictory = document.getElementById('formAddServerDictory');
-
 const urlPost = 'http://localhost:3000/api/upload';
 const urlJson = './app-data/albumCache.json';
 
@@ -23,7 +22,6 @@ formAddServerDictory.addEventListener('submit', async event => {
 
             alert(`Thank you for submitting the information. It has been recieved:\n`+
                 `${data}`);
-
         }
         else {
             alert("Transmission error");

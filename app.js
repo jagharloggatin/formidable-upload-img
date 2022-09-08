@@ -1,3 +1,9 @@
+// Läs för att förstå formidable
+// https://www.npmjs.com/package/formidable
+// https://www.section.io/engineering-education/uploading-files-using-formidable-nodejs/
+// https://www.tabnine.com/code/javascript/functions/formidable/Files/image
+// https://www.w3schools.com/nodejs/nodejs_uploadfiles.asp
+
 const express = require('express');
 const formidable = require('formidable');
 const path = require("path");
@@ -22,7 +28,7 @@ app.listen(3000, () => {
 //Post request
 app.post('/api/upload', (req, res) => {
 
-    //Creates a formidable object
+    //Creates a formidable object of the incoming data
     let form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
@@ -33,15 +39,16 @@ app.post('/api/upload', (req, res) => {
         let oldPath = files.image.filepath;
 
         //Puts the file in the new path
-        let newPath = path.resolve('appdata/library/pictures/' + files.image.originalFilename);
+        // let newPath = path.resolve('appdata/library/pictures/' + files.image.originalFilename);
 
         //This is what path.resolve fixes, you don't have to write the full dirname
-        // let newPath = 'C:\\Users\\Jonathan\\WebstormProjects\\formidable\\app-data\\library\\pictures\\albumheaderimage\\' + files.image.originalFilename;
+        let newPath = 'C:\\Users\\Jonathan\\WebstormProjects\\formidable\\app-data\\library\\pictures\\albumheaderimage\\' + files.image.originalFilename;
 
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
             res.write('File uploaded and moved!');
             res.end();
+
         });
 
         //Writes image info to albumCache.json to later unpack and use
@@ -51,7 +58,7 @@ app.post('/api/upload', (req, res) => {
 });
 
 
-//Converts fileinfo to JSON
+//Converts file info to JSON
 function writeJSON(fname, obj) {
     const dir = path.join(applicationDir, `/${libraryDir}`);
     fs.writeFileSync(path.resolve(dir, fname), JSON.stringify(obj));
